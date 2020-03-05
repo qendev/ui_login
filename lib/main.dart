@@ -85,7 +85,7 @@ class _State extends State<MyApp> {
                 Container(
                     child: Row(
                       children: <Widget>[
-                        Text('Does not have account?'),
+                        Text('Do not have an account?'),
                         FlatButton(
                           textColor: Colors.blue,
                           child: Text(
