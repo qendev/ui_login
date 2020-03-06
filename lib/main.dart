@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uilogin/utilities/constants.dart'as style;
 
 void main() {
   runApp(MaterialApp(
@@ -14,12 +15,15 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FocusNode myFocusNode = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Sample App'),
+          centerTitle: true,
+          backgroundColor: style.AppColors.primaryColor,
         ),
         body: Padding(
             padding: EdgeInsets.all(10),
@@ -31,35 +35,64 @@ class _State extends State<MyApp> {
                     child: Text(
                       'Flutter Login',
                       style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.deepPurple,
                           fontWeight: FontWeight.w500,
-                          fontSize: 30),
+                          fontSize: 30.0),
                     )),
                 Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
                     child: Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.deepPurple),
+
                     )),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
+                    focusNode: myFocusNode,
                     controller: nameController,
+                    autofocus: false,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      alignLabelWithHint: true,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: style.AppColors.primaryColor,
+                          ),
+                        ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: style.AppColors.staticgrey,),
+
+
+                      ),
                       labelText: 'User Name',
+                      labelStyle: TextStyle(
+                        color:
+                        myFocusNode.hasFocus ?Colors.deepPurple : Colors.grey[600],
+                    )
+
+                      ),
                     ),
                   ),
-                ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
+                    focusNode: myFocusNode,
                     obscureText: true,
                     controller: passwordController,
+                    autofocus: false,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: style.AppColors.primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: style.AppColors.staticgrey),
+                      ),
                       labelText: 'Password',
+                      labelStyle: TextStyle(
+                        color: myFocusNode.hasFocus ?Colors.deepPurple : Colors.grey[600]
+                      )
                     ),
                   ),
                 ),
@@ -67,15 +100,16 @@ class _State extends State<MyApp> {
                   onPressed: (){
                     //forgot password screen
                   },
-                  textColor: Colors.blue,
+                  textColor: Colors.deepPurple,
                   child: Text('Forgot Password'),
+
                 ),
                 Container(
                     height: 50,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: RaisedButton(
                       textColor: Colors.white,
-                      color: Colors.blue,
+                      color: Colors.deepPurple,
                       child: Text('Login'),
                       onPressed: () {
                         print(nameController.text);
@@ -85,9 +119,15 @@ class _State extends State<MyApp> {
                 Container(
                     child: Row(
                       children: <Widget>[
-                        Text('Do not have an account?'),
+                        Text(
+                            'Do not have an account?',
+                          style: TextStyle(
+                            color: Colors.deepPurple
+                          ),
+                        ),
+
                         FlatButton(
-                          textColor: Colors.blue,
+                          textColor: Colors.deepPurple,
                           child: Text(
                             'Sign in',
                             style: TextStyle(fontSize: 20),
@@ -103,6 +143,7 @@ class _State extends State<MyApp> {
             )));
   }
 }
+
 
 
 
